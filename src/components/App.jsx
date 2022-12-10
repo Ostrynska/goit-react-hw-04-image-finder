@@ -10,10 +10,35 @@ export class App extends Component {
   state = {
     searchName: '',
     page: 1,
+    // query: [],
+    items: [],
   };
+
+  // componentDidUpdate(_, prevState) {
+  //   if (
+  //     prevState.page !== this.state.page ||
+  //     prevState.searchName !== this.state.searchName
+  //   ) {
+  //     console.log('Fetch data');
+  //   }
+  // }
 
   handleFormSubmit = searchName => {
     this.setState({ searchName });
+
+    // this.setState({
+    //   page: 1,
+    //   searchName,
+    //   items: [],
+    // });
+  };
+
+  loadMore = () => {
+    this.setState(prevState => {
+      return {
+        page: prevState.page + 1,
+      };
+    });
   };
 
   render() {
@@ -21,7 +46,7 @@ export class App extends Component {
       <Wrapper>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ImageGallery searchName={this.state.searchName} />
-        <Button />
+        <Button loadMore={this.loadMore} />
         <Toaster />
       </Wrapper>
     );

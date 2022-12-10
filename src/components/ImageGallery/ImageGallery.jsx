@@ -1,7 +1,7 @@
 import { Component } from 'react';
 // import { fetchImages } from 'api';
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
-import { FallbackView } from '../Notification/NotificationError';
+import { ErrorView } from '../Notification/NotificationError';
 import { Gallery } from './ImageGallery.styled';
 
 export class ImageGallery extends Component {
@@ -30,9 +30,7 @@ export class ImageGallery extends Component {
         })
         .then(images => this.setState({ images, status: 'resolved' }))
         .catch(error => {
-          console.log(error);
           this.setState({ error, status: 'rejected' });
-          console.log(error);
         });
     }
   }
@@ -49,7 +47,7 @@ export class ImageGallery extends Component {
     }
 
     if (status === 'rejected') {
-      return <FallbackView message={error.message} />;
+      return <ErrorView message={error.message} />;
     }
 
     if (status === 'resolved') {
