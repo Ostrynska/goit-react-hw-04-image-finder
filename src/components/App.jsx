@@ -1,36 +1,48 @@
 import React, { Component } from 'react';
-// import { FetchImages } from 'api';
+import { getImages } from '../services/api';
 import { Toaster } from 'react-hot-toast';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { Button } from './Button/Button';
 import { Wrapper } from './App.styled';
+import { Loading } from './Loader/Loader';
+import { ErrorView } from './Notification/NotificationError';
+import { Button } from './Button/Button';
 
 export class App extends Component {
   state = {
     searchName: '',
+    images: [],
+    // error: null,
+    // loading: false,
     page: 1,
-    // query: [],
-    items: [],
+    isLoading: false,
+    showModal: null,
   };
 
-  // componentDidUpdate(_, prevState) {
-  //   if (
-  //     prevState.page !== this.state.page ||
-  //     prevState.searchName !== this.state.searchName
-  //   ) {
-  //     console.log('Fetch data');
-  //   }
-  // }
+  async componentDidUpdate(prevProps, prevState) {
+    const { searchName, page } = this.state;
+    const prevSearch = prevProps.searchName;
+    const prevPage = prevState.page;
+
+    if (prevPage !== page || prevSearch !== searchName) {
+      try {
+        this.setState({ isLoading: true });
+        const image = await getImages(searchName, page);
+        this.setState(prevState => {
+          return { images: [...prevState.images, ...image] };
+        });
+        this.setState({ isLoading: false });
+      } catch (error) {
+        this.setState({ error, isLoading: false });
+      }
+    }
+  }
 
   handleFormSubmit = searchName => {
-    this.setState({ searchName });
-
-    // this.setState({
-    //   page: 1,
-    //   searchName,
-    //   items: [],
-    // });
+    if (this.state.searchName !== searchName) {
+      this.setState({ images: [], searchName });
+    }
+    this.setState({ searchName, page: 1, images: [] });
   };
 
   loadMore = () => {
@@ -41,12 +53,29 @@ export class App extends Component {
     });
   };
 
+  onModalOpen = url => {
+    this.setState({
+      showModal: url,
+    });
+  };
+
+  onModalClose = () => {
+    this.setState({
+      showModal: '',
+    });
+  };
+
   render() {
+    const { images, isLoading, showModal } = this.state;
     return (
       <Wrapper>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        <ImageGallery searchName={this.state.searchName} />
-        <Button loadMore={this.loadMore} />
+        {images === null && <h1>Search images and photos</h1>}
+        {/* {status === 'rejected' && <ErrorView message={error.message} />} */}
+
+        {images.length !== 0 && <ImageGallery images={images} />}
+        {/* {isLoading && <Loading />} */}
+        {images.length >= 12 && <Button loadMore={this.loadMore} />}
         <Toaster />
       </Wrapper>
     );
