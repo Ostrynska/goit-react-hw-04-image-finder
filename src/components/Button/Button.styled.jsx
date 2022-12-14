@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
 export const LoadMore = styled.button`
-  padding: 8px 16px;
+  padding: 10px 14px;
   border-radius: 2px;
-  background-color: #3f51b5;
+  background-color: #1c4931;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
-  display: inline-block;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 24px;
   color: #fff;
   border: 0;
   text-decoration: none;
   cursor: pointer;
   font-family: inherit;
-  margin: 0 auto;
   font-size: 18px;
   line-height: 24px;
   font-style: normal;
@@ -23,6 +25,6 @@ export const LoadMore = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #303f9f;
+    background-color: #1c4331;
   }
 `;
