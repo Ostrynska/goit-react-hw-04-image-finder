@@ -5,8 +5,8 @@ export const Loading = () => {
   return (
     <LoadingWrapp>
       <BeatLoader
-        color="#d6cb36"
-        size={250}
+        color="#1c4931"
+        size={35}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
