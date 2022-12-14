@@ -1,83 +1,103 @@
 import React, { Component } from 'react';
-import { getImages } from '../services/api';
-import { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
+
+import { getImages, getImageData } from '../services/api';
+
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { Wrapper } from './App.styled';
-import { Loading } from './Loader/Loader';
-import { ErrorView } from './Notification/NotificationError';
 import { Button } from './Button/Button';
+import { Loading } from './Loader/Loader';
+import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
     searchName: '',
     images: [],
-    // error: null,
-    // loading: false,
     page: 1,
-    isLoading: false,
-    showModal: null,
+    loading: false,
+    showModal: false,
+    fullImage: '',
+    error: null,
   };
 
-  async componentDidUpdate(prevProps, prevState) {
-    const { searchName, page } = this.state;
-    const prevSearch = prevProps.searchName;
+  componentDidUpdate(_, prevState) {
+    const prevSearch = prevState.searchName;
     const prevPage = prevState.page;
+    const { searchName, page } = this.state;
 
-    if (prevPage !== page || prevSearch !== searchName) {
-      try {
-        this.setState({ isLoading: true });
-        const image = await getImages(searchName, page);
-        this.setState(prevState => {
-          return { images: [...prevState.images, ...image] };
-        });
-        this.setState({ isLoading: false });
-      } catch (error) {
-        this.setState({ error, isLoading: false });
-      }
+    if (prevSearch !== searchName || prevPage !== page) {
+      this.renderGallery();
     }
   }
 
-  handleFormSubmit = searchName => {
-    if (this.state.searchName !== searchName) {
-      this.setState({ images: [], searchName });
+  renderGallery = async () => {
+    const { searchName, page } = this.state;
+    this.setState({ loading: true });
+
+    try {
+      const { hits, totalHits, total } = await getImages(searchName, page);
+      const newDataImage = getImageData(hits);
+
+      if (!hits.length) {
+        toast.error(
+          `Nooo... we cannot find "${searchName}" 😢
+          Please try again`
+        );
+      } else if (page === 1) {
+        toast.success(`You can find: ${total} images 🚀`);
+      }
+
+      this.setState(({ images }) => ({
+        images: [...images, ...newDataImage],
+        totalHits,
+      }));
+    } catch (error) {
+      this.setState({ error });
+      toast.error(`Oops... Something went wrong`);
+    } finally {
+      this.setState({ loading: false });
     }
-    this.setState({ searchName, page: 1, images: [] });
+  };
+
+  onFormSubmit = searchName => {
+    this.setState({ searchName, images: [], page: 1 });
   };
 
   loadMore = () => {
-    this.setState(prevState => {
-      return {
-        page: prevState.page + 1,
-      };
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+  };
+
+  openModal = fullImage => {
+    this.toggleModal();
+    this.setState({
+      fullImage,
     });
   };
 
-  onModalOpen = url => {
-    this.setState({
-      showModal: url,
-    });
-  };
-
-  onModalClose = () => {
-    this.setState({
-      showModal: '',
-    });
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
   };
 
   render() {
-    const { images, isLoading, showModal } = this.state;
-    return (
-      <Wrapper>
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        {images === null && <h1>Search images and photos</h1>}
-        {/* {status === 'rejected' && <ErrorView message={error.message} />} */}
+    const { images, loading, fullImage, showModal, totalHits } = this.state;
+    const hideLoadMoreBtn =
+      images.length > 0 && !loading && images.length !== totalHits;
 
-        {images.length !== 0 && <ImageGallery images={images} />}
-        {/* {isLoading && <Loading />} */}
-        {images.length >= 12 && <Button loadMore={this.loadMore} />}
-        <Toaster />
-      </Wrapper>
+    return (
+      <>
+        <Searchbar onSubmit={this.onFormSubmit} />
+        <ImageGallery images={images} onClick={this.openModal} />
+        {showModal && (
+          <Modal onModalClick={this.toggleModal} fullImage={fullImage} />
+        )}
+        {loading && <Loading />}
+        {hideLoadMoreBtn && <Button onLoadMore={this.loadMore} />}
+        <Toaster position="top-right" />
+      </>
     );
   }
 }
