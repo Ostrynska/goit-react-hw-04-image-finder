@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { IconContext } from 'react-icons';
 import { BsSearch } from 'react-icons/bs';
@@ -23,9 +24,9 @@ export class Searchbar extends Component {
 
     this.props.onSubmit(this.state.searchName);
     if (this.state.searchName.trim() === '') {
-      toast('Please enter a valid seach name');
-      return;
+      return toast.warn('Please enter a valid seach name');
     }
+    this.props.onSubmit(this.state.searchName);
     this.setState({ searchName: '' });
   };
 
@@ -52,3 +53,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
