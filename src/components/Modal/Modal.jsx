@@ -17,7 +17,7 @@ export class Modal extends Component {
     }
   };
 
-  onBackDrop = e => {
+  onBackdrop = e => {
     if (e.target === e.currentTarget) {
       this.props.onModalClick();
     }
@@ -27,7 +27,7 @@ export class Modal extends Component {
     const { fullImage, alt } = this.props;
 
     return (
-      <Overlay onClick={this.onBackDrop}>
+      <Overlay onClick={this.onBackdrop}>
         <ModalWindow>
           <img src={fullImage} alt={alt} />
         </ModalWindow>
