@@ -22,15 +22,19 @@ export class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state.searchName);
-    if (this.state.searchName.trim() === '') {
+    const { searchName } = this.state;
+
+    this.props.onSubmit(searchName);
+    if (searchName.trim() === '') {
       return toast.warn('Please enter a valid seach name');
     }
-    this.props.onSubmit(this.state.searchName);
+    this.props.onSubmit(searchName);
     this.setState({ searchName: '' });
   };
 
   render() {
+    const { searchName } = this.state;
+
     return (
       <Header>
         <SearchForm onSubmit={this.handleSubmit}>
@@ -42,7 +46,7 @@ export class Searchbar extends Component {
           <SearchInput
             type="text"
             name="searchName"
-            value={this.state.searchName}
+            value={searchName}
             onChange={this.handleNameChange}
             autocomplete="off"
             autoFocus
