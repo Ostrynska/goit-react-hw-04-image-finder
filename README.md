@@ -1,3 +1,1 @@
-# goit-react-hw-03-image-finder
-
-2 - Пошук зображень
+# goit-react-hw-04-image-finder
