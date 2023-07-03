@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const LoadMore = styled.button`
-  ${'' /* padding: 10px 14px; */}
-  margin-bottom: 24px;
   background: #fff;
   color: #191b26;
   border: 1px solid #ceced2;
@@ -31,16 +29,10 @@ export const LoadMore = styled.button`
 export const Wrapper = styled.div`
   position: absolute;
   z-index: 5;
-  ${'' /* bottom: 0; */}
   left: 0;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 24px;
-  height: 110px;
-  ${
-    '' /* background: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)); */
-  }
-  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0),  rgba(47, 48, 58, 0.4));
+  padding: 24px 24px 0 0;
 `;

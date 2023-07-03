@@ -23,10 +23,15 @@ export const getImages = async (q, page) => {
 };
 
 export function getImageData(data) {
-  return data.map(({ id, tags, largeImageURL, webformatURL }) => ({
-    id,
-    tags,
-    largeImageURL,
-    webformatURL,
-  }));
+  return data.map(
+    ({ id, tags, largeImageURL, webformatURL, user, userImageURL, likes }) => ({
+      id,
+      tags,
+      largeImageURL,
+      webformatURL,
+      user,
+      userImageURL,
+      likes,
+    })
+  );
 }

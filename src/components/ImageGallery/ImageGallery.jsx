@@ -10,15 +10,28 @@ export const ImageGallery = ({ images, onClick }) => {
     <section>
       <Container>
         <Gallery>
-          {images.map(({ id, webformatURL, largeImageURL, tags }) => (
-            <ImageGalleryItem
-              key={id}
-              url={webformatURL}
-              fullImage={largeImageURL}
-              tag={tags}
-              openModal={onClick}
-            />
-          ))}
+          {images.map(
+            ({
+              id,
+              webformatURL,
+              largeImageURL,
+              tags,
+              user,
+              userImageURL,
+              likes,
+            }) => (
+              <ImageGalleryItem
+                key={id}
+                url={webformatURL}
+                like={likes}
+                fullImage={largeImageURL}
+                tag={tags}
+                name={user}
+                userImg={userImageURL}
+                openModal={onClick}
+              />
+            )
+          )}
         </Gallery>
       </Container>
     </section>

@@ -23,10 +23,8 @@ export const SearchButton = styled.button`
 
 export const SearchInput = styled.input`
   display: inline-block;
-  width: 100%;
   font: inherit;
   font-size: 14px;
-  ${'' /* font-size: 20px; */}
   border: none;
   outline: none;
   padding: 8px;
