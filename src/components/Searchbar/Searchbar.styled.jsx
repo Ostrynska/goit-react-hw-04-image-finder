@@ -22,6 +22,10 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchInput = styled.input`
+  [data-autocompleted] {
+    background-color: transparent !important;
+  }
+  width: 100%;
   display: inline-block;
   font: inherit;
   font-size: 14px;
@@ -42,7 +46,7 @@ export const Wrapper = styled.section`
 
 export const Hero = styled.div`
   width: 100%;
-  max-width: 840px;
+  ${'' /* max-width: 840px; */}
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -8,6 +8,7 @@ export const Wrapper = styled.section`
   display: flex;
   align-items: flex-start;
   padding: 80px 0;
+  border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
 `;
 

@@ -47,8 +47,8 @@ export const Searchbar = ({ onSubmit }) => {
               name="searchName"
               value={searchName}
               onChange={handleNameChange}
-              autocomplete="off"
-              autoFocus
+              autoComplete="off"
+              // autoFocus
               placeholder="Search high-resolution images"
             />
           </SearchForm>
