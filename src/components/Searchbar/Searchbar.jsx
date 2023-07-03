@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { Container } from 'components/Container/Container';
 
 import {
-  Main,
+  Wrapper,
   SearchForm,
   SearchButton,
   SearchInput,
@@ -33,30 +33,28 @@ export const Searchbar = ({ onSubmit }) => {
   };
 
   return (
-    <Main>
-      <section>
-        <Container>
-          <Hero>
-            <Title>Discover the beauty around the world</Title>
-            <PreTitle>Over 4 million+ high quality stock images</PreTitle>
-            <SearchForm onSubmit={handleSubmit}>
-              <SearchButton type="submit">
-                <Search size={24} />
-              </SearchButton>
-              <SearchInput
-                type="text"
-                name="searchName"
-                value={searchName}
-                onChange={handleNameChange}
-                autocomplete="off"
-                autoFocus
-                placeholder="Search high-resolution images"
-              />
-            </SearchForm>
-          </Hero>
-        </Container>
-      </section>
-    </Main>
+    <Wrapper>
+      <Container>
+        <Hero>
+          <Title>Discover the beauty around the world</Title>
+          <PreTitle>Over 4 million+ high quality stock images</PreTitle>
+          <SearchForm onSubmit={handleSubmit}>
+            <SearchButton type="submit">
+              <Search size={24} />
+            </SearchButton>
+            <SearchInput
+              type="text"
+              name="searchName"
+              value={searchName}
+              onChange={handleNameChange}
+              autocomplete="off"
+              autoFocus
+              placeholder="Search high-resolution images"
+            />
+          </SearchForm>
+        </Hero>
+      </Container>
+    </Wrapper>
   );
 };
 

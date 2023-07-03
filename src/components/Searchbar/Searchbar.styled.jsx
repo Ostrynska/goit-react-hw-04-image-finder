@@ -38,10 +38,8 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const Main = styled.main`
-  section {
-    padding: 99px 0;
-  }
+export const Wrapper = styled.section`
+  padding: 99px 0;
 `;
 
 export const Hero = styled.div`

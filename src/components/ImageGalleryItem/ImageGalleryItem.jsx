@@ -3,17 +3,26 @@ import PropTypes from 'prop-types';
 import {
   ImageGalleryItems,
   ImageGalleryImage,
+  ImageTagList,
 } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ url, tag, openModal, fullImage }) => {
+  const tagsList = tag.split(',').map(t => t.trim());
   return (
-    <ImageGalleryItems>
-      <ImageGalleryImage
-        src={url}
-        alt={tag}
-        onClick={() => openModal(fullImage)}
-      />
-    </ImageGalleryItems>
+    <>
+      <ImageGalleryItems>
+        <ImageGalleryImage
+          src={url}
+          alt={tag}
+          onClick={() => openModal(fullImage)}
+        />
+        <ImageTagList>
+          {tagsList.map((t, idx) => (
+            <span key={idx}>{t}</span>
+          ))}
+        </ImageTagList>
+      </ImageGalleryItems>
+    </>
   );
 };
 

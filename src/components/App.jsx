@@ -8,6 +8,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loading } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
+import { Commercial } from './Commercial/Commercial';
 import Header from './Header/Header';
 
 export const App = () => {
@@ -87,7 +88,9 @@ export const App = () => {
         )}
         {loading && <Loading />}
         {hideLoadMoreBtn && <Button onLoadMore={loadMore} />}
+
         <Toaster position="top-right" />
+        <Commercial />
       </main>
     </>
   );
