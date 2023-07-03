@@ -1,4 +1,5 @@
 import { FiUpload } from 'react-icons/fi';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import styled, { css } from 'styled-components';
 
@@ -82,6 +83,11 @@ export const MenuItem = styled.li`
         color: #fff;
       }
     `}
+      ${props =>
+    props.$arrow &&
+    css`
+      width: 76px;
+    `}
 `;
 
 export const MenuButton = styled.button`
@@ -93,5 +99,12 @@ export const Icon = styled(FiUpload)`
   color: #fff;
   margin-right: 8px;
   width: 15px;
+  height: 20px;
+`;
+
+export const IconArrow = styled(IoIosArrowDown)`
+  color: #fff;
+  margin-left: 2px;
+  width: 12px;
   height: 20px;
 `;

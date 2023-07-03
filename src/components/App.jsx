@@ -60,10 +60,6 @@ export const App = () => {
     setPage(1);
   };
 
-  const loadMore = () => {
-    setPage(page => page + 1);
-  };
-
   const openModal = fullImage => {
     toggleModal();
     setFullImage(fullImage);
@@ -75,6 +71,10 @@ export const App = () => {
 
   const hideLoadMoreBtn =
     images.length > 0 && !loading && images.length !== totalHits;
+
+  const loadMore = () => {
+    setPage(page => page + 1);
+  };
 
   return (
     <>

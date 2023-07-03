@@ -1,30 +1,46 @@
 import styled from 'styled-components';
 
 export const LoadMore = styled.button`
-  padding: 10px 14px;
-  border-radius: 2px;
-  background-color: #1c4931;
+  ${'' /* padding: 10px 14px; */}
+  margin-bottom: 24px;
+  background: #fff;
+  color: #191b26;
+  border: 1px solid #ceced2;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 24px;
-  color: #fff;
-  border: 0;
-  text-decoration: none;
+  border-radius: 24px;
+  height: 40px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-family: inherit;
-  font-size: 18px;
-  line-height: 24px;
-  font-style: normal;
-  font-weight: 500;
-  min-width: 180px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: all 0.1s ease-in;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 14px;
 
   &:hover,
   &:focus {
-    background-color: #1c4331;
+    border: 1px solid #191b26;
+    color: #191b26;
   }
+`;
+
+export const Wrapper = styled.div`
+  position: absolute;
+  z-index: 5;
+  ${'' /* bottom: 0; */}
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 24px;
+  height: 110px;
+  ${
+    '' /* background: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)); */
+  }
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0),  rgba(47, 48, 58, 0.4));
 `;

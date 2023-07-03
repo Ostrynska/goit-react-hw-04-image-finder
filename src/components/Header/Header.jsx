@@ -11,6 +11,7 @@ import {
   MenuItem,
   MenuButton,
   Icon,
+  IconArrow,
 } from './Header.styled';
 
 const Header = () => {
@@ -30,8 +31,11 @@ const Header = () => {
         <HeaderNav>
           <Logo href="/">Pixelstock</Logo>
           <MenuList>
-            <MenuItem onClick={openModal}>
-              <MenuButton>Explore</MenuButton>
+            <MenuItem $arrow onClick={openModal}>
+              <MenuButton>
+                Explore
+                <IconArrow />
+              </MenuButton>
             </MenuItem>
             <MenuItem onClick={openModal}>
               <MenuButton>Log in</MenuButton>
