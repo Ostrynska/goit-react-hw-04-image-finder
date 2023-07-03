@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
-import { IconContext } from 'react-icons';
-import { BsSearch } from 'react-icons/bs';
+
+import { Container } from 'components/Container/Container';
+
 import {
-  Header,
+  Main,
   SearchForm,
   SearchButton,
   SearchInput,
+  Hero,
+  PreTitle,
+  Title,
+  Search,
 } from './Searchbar.styled';
 
 export const Searchbar = ({ onSubmit }) => {
@@ -28,24 +33,30 @@ export const Searchbar = ({ onSubmit }) => {
   };
 
   return (
-    <Header>
-      <SearchForm onSubmit={handleSubmit}>
-        <SearchButton type="submit">
-          <IconContext.Provider value={{ size: '20px' }}>
-            <BsSearch />
-          </IconContext.Provider>
-        </SearchButton>
-        <SearchInput
-          type="text"
-          name="searchName"
-          value={searchName}
-          onChange={handleNameChange}
-          autocomplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </SearchForm>
-    </Header>
+    <Main>
+      <section>
+        <Container>
+          <Hero>
+            <Title>Discover the beauty around the world</Title>
+            <PreTitle>Over 4 million+ high quality stock images</PreTitle>
+            <SearchForm onSubmit={handleSubmit}>
+              <SearchButton type="submit">
+                <Search size={24} />
+              </SearchButton>
+              <SearchInput
+                type="text"
+                name="searchName"
+                value={searchName}
+                onChange={handleNameChange}
+                autocomplete="off"
+                autoFocus
+                placeholder="Search high-resolution images"
+              />
+            </SearchForm>
+          </Hero>
+        </Container>
+      </section>
+    </Main>
   );
 };
 

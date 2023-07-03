@@ -1,61 +1,73 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
-  top: 0;
-  left: 0;
-  position: sticky;
-  z-index: 1100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fff;
-  background-color: #1c4931;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-`;
+import { BiSearch } from 'react-icons/bi';
 
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  border: 1px solid #f7f7f7;
   background-color: #fff;
-  border-radius: 3px;
-  overflow: hidden;
+  height: 56px;
+  padding: 0 0 0 24px;
+  border-radius: 56px;
+  box-shadow: 0 16px 40px rgba(25, 27, 38, 0.08);
 `;
 
 export const SearchButton = styled.button`
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  height: 25px;
   border: 0;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  outline: none;
-
-  &:hover {
-    opacity: 1;
-  }
 `;
 
 export const SearchInput = styled.input`
   display: inline-block;
   width: 100%;
   font: inherit;
-  font-size: 20px;
+  font-size: 14px;
+  ${'' /* font-size: 20px; */}
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: 8px;
+  min-width: 30px;
 
   &::placeholder {
     font: inherit;
-    font-size: 18px;
+    font-size: 14px;
   }
+`;
+
+export const Main = styled.main`
+  section {
+    padding: 99px 0;
+  }
+`;
+
+export const Hero = styled.div`
+  width: 100%;
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+  margin-left: auto;
+`;
+
+export const Title = styled.h1`
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 8px;
+`;
+
+export const PreTitle = styled.h2`
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0 0 24px;
+  color: #fff;
+`;
+
+export const Search = styled(BiSearch)`
+  color: #656f79;
 `;

@@ -8,6 +8,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loading } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
+import Header from './Header/Header';
 
 export const App = () => {
   const [searchName, setSearchName] = useState('');
@@ -77,12 +78,17 @@ export const App = () => {
 
   return (
     <>
-      <Searchbar onSubmit={onFormSubmit} />
-      <ImageGallery images={images} onClick={openModal} />
-      {showModal && <Modal onModalClick={toggleModal} fullImage={fullImage} />}
-      {loading && <Loading />}
-      {hideLoadMoreBtn && <Button onLoadMore={loadMore} />}
-      <Toaster position="top-right" />
+      <Header />
+      <main>
+        <Searchbar onSubmit={onFormSubmit} />
+        <ImageGallery images={images} onClick={openModal} />
+        {showModal && (
+          <Modal onModalClick={toggleModal} fullImage={fullImage} />
+        )}
+        {loading && <Loading />}
+        {hideLoadMoreBtn && <Button onLoadMore={loadMore} />}
+        <Toaster position="top-right" />
+      </main>
     </>
   );
 };
