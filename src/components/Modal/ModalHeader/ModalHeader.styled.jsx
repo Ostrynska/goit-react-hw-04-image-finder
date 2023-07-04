@@ -47,18 +47,10 @@ export const ModalContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 25px 12px;
-  max-width: 368px;
-  @media (min-width: 478px) {
-    padding: 50px 40px;
-    max-width: 440px;
-  }
-  @media screen and (min-width: 768px) {
-    max-width: 488px;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 575px;
-    height: 295px;
-  }
+  max-width: 468px;
+
+  width: 575px;
+  height: 295px;
 `;
 
 export const ModalCloseButton = styled.button`
@@ -93,10 +85,22 @@ export const TextWrapp = styled.div`
 `;
 
 export const ModalFooter = styled.div`
+  @media (min-width: 478px) {
+    bottom: 14px;
+    gap: 155px;
+  }
+  @media screen and (min-width: 768px) {
+    bottom: 16px;
+    gap: 165px;
+  }
+  @media screen and (min-width: 1200px) {
+    bottom: 12px;
+    gap: 195px;
+  }
   position: absolute;
-  bottom: 12px;
+
   display: flex;
-  gap: 195px;
+
   div {
     font-size: 12px;
     display: flex;
