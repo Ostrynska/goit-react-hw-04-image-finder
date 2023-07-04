@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
+import ScrollToTop from 'react-scroll-to-top';
 
 import { getImages, getImageData, getPopularImages } from '../services/api';
 
@@ -11,6 +12,8 @@ import { Modal } from './Modal/Modal';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+
+import { AiOutlineArrowUp } from 'react-icons/ai';
 
 export const App = () => {
   const [searchName, setSearchName] = useState('');
@@ -27,7 +30,8 @@ export const App = () => {
 
     try {
       const popularImages = await getPopularImages(page);
-      setImages(prevImages => [...prevImages, ...popularImages]);
+      setImages(popularImages);
+      // setImages(images => [...images, ...popularImages]);
     } catch (error) {
       setError(error);
     } finally {
@@ -106,6 +110,10 @@ export const App = () => {
       </main>
       <Footer />
       <Toaster position="top-right" />
+      <ScrollToTop
+        smooth
+        component={<AiOutlineArrowUp size={28} style={{ color: '#1c4931' }} />}
+      />
     </>
   );
 };
