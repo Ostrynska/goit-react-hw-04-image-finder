@@ -41,7 +41,10 @@ export const SearchInput = styled.input`
 `;
 
 export const Wrapper = styled.section`
-  padding: 99px 0;
+  padding: 75px 0;
+  @media screen and (min-width: 768px) {
+    padding: 99px 0;
+  }
 `;
 
 export const Hero = styled.div`

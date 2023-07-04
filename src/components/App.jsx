@@ -22,22 +22,26 @@ export const App = () => {
   const [error, setError] = useState(null);
   const [totalHits, setTotalHits] = useState(0);
 
-  useEffect(() => {
-    getPopularImages()
-      .then(images => {
-        setImages(images);
-      })
-      .catch(error => {
-        console.log('Помилка при отриманні популярних зображень:', error);
-      });
-  }, []);
+  const fetchPopularImages = async () => {
+    setLoading(true);
+
+    try {
+      const popularImages = await getPopularImages(page);
+      setImages(prevImages => [...prevImages, ...popularImages]);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!searchName) {
-      return;
+      fetchPopularImages();
+    } else {
+      renderGallery();
     }
-    renderGallery();
-  }, [searchName, page]);
+  }, [page, searchName]);
 
   const renderGallery = async () => {
     setLoading(true);

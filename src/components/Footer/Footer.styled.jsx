@@ -14,10 +14,20 @@ export const FooterWrap = styled.footer`
 
 export const Wrapper = styled.div`
   border-top: 1px solid #eaeaea;
-  display: flex;
-  align-items: flex-end;
-  gap: 108px;
+
   padding: 20px 0;
+  @media screen and (min-width: 420px) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 68px;
+  }
+  @media screen and (min-width: 1200px) {
+    gap: 108px;
+  }
 `;
 
 export const FooterNav = styled.div`
@@ -34,10 +44,14 @@ export const Logo = styled.a`
 `;
 
 export const FooterSocial = styled.div`
-  margin-top: 35px;
   display: flex;
-
-  margin-top: 50px;
+  margin-top: 30px;
+  @media screen and (min-width: 768px) {
+    margin-top: 100px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-top: 50px;
+  }
   p {
     margin-right: 10px;
   }
@@ -62,7 +76,7 @@ export const Copyright = styled.div`
   width: 100%;
   padding: 10px 0;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
 `;
@@ -85,6 +99,13 @@ export const IconWrap = styled.div`
 export const CommercialWrap = styled.div`
   display: flex;
   gap: 24px;
+  margin-top: 40px;
+  @media screen and (min-width: 480px) {
+    margin-top: 60px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+  }
 `;
 
 export const Title = styled.h2`

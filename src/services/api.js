@@ -23,12 +23,17 @@ export const getImages = async (q, page) => {
   }
 };
 
-export async function getPopularImages() {
+export async function getPopularImages(page) {
   try {
-    const response = await axios.get(popular);
+    const response = await axios.get(popular, {
+      params: {
+        per_page: 12,
+        page,
+      },
+    });
     return response.data.hits;
   } catch (error) {
-    console.log('Помилка при отриманні популярних зображень:', error);
+    console.log(error);
     return [];
   }
 }

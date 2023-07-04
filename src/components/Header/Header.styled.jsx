@@ -8,10 +8,6 @@ export const HeaderWrap = styled.header`
   align-items: center;
   justify-content: stretch;
   padding: 20px 0;
-  ${
-    '' /* @media screen and (min-width: 1200px) {
-  } */
-  }
 `;
 
 export const HeaderNav = styled.div`
@@ -28,13 +24,18 @@ export const Logo = styled.a`
 `;
 
 export const MenuList = styled.ul`
-  display: flex;
-  list-style: none;
-  gap: 10px;
-  margin-left: auto;
-  ${
-    '' /* @media screen and (min-width: 1200px) {
-  } */
+  display: none;
+  @media screen and (min-width: 500px) {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+    margin-left: auto;
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin-left: auto;
   }
 `;
 
@@ -49,8 +50,16 @@ export const MenuItem = styled.li`
   white-space: nowrap;
   border-radius: 24px;
   height: 40px;
-  padding: 0 16px;
+
   transition: all 0.1s ease-in;
+  @media screen and (min-width: 500px) {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 0 16px;
+    font-size: 14px;
+  }
   &:hover {
     background: hsla(0, 0%, 100%, 0.1);
     color: #f7f7f7;
