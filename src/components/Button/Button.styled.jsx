@@ -8,7 +8,7 @@ export const LoadMore = styled.button`
   text-align: center;
   border-radius: 24px;
   height: 40px;
-  padding: 0 16px;
+  padding: 10px 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
