@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_KEY = '29966303-d9893c98832d118b1f4c04955';
 const BASE_URL = 'https://pixabay.com/api/';
+const popular = `https://pixabay.com/api/?key=${API_KEY}&category=popular`;
 
 export const getImages = async (q, page) => {
   const options = new URLSearchParams({
@@ -21,6 +22,16 @@ export const getImages = async (q, page) => {
     console.log(error);
   }
 };
+
+export async function getPopularImages() {
+  try {
+    const response = await axios.get(popular);
+    return response.data.hits;
+  } catch (error) {
+    console.log('Помилка при отриманні популярних зображень:', error);
+    return [];
+  }
+}
 
 export function getImageData(data) {
   return data.map(

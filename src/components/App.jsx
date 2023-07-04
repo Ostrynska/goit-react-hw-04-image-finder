@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 
-import { getImages, getImageData } from '../services/api';
+import { getImages, getImageData, getPopularImages } from '../services/api';
 
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loading } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
-import { Commercial } from './Commercial/Commercial';
+
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 export const App = () => {
   const [searchName, setSearchName] = useState('');
@@ -20,6 +21,16 @@ export const App = () => {
   const [fullImage, setFullImage] = useState('');
   const [error, setError] = useState(null);
   const [totalHits, setTotalHits] = useState(0);
+
+  useEffect(() => {
+    getPopularImages()
+      .then(images => {
+        setImages(images);
+      })
+      .catch(error => {
+        console.log('Помилка при отриманні популярних зображень:', error);
+      });
+  }, []);
 
   useEffect(() => {
     if (!searchName) {
@@ -88,10 +99,9 @@ export const App = () => {
         )}
         {loading && <Loading />}
         {hideLoadMoreBtn && <Button onLoadMore={loadMore} />}
-
-        <Toaster position="top-right" />
-        <Commercial />
       </main>
+      <Footer />
+      <Toaster position="top-right" />
     </>
   );
 };
